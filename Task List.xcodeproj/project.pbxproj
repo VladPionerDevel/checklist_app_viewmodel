@@ -29,7 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D238FEE22657EE030071D81D /* CheckList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D238FEE22657EE030071D81D /* Task List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238FEE52657EE030071D81D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D238FEE72657EE030071D81D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D238FEE92657EE030071D81D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		D238FEE32657EE030071D81D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D238FEE22657EE030071D81D /* CheckList.app */,
+				D238FEE22657EE030071D81D /* Task List.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,9 +125,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D238FEE12657EE030071D81D /* CheckList */ = {
+		D238FEE12657EE030071D81D /* Task List */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D238FEF92657EE050071D81D /* Build configuration list for PBXNativeTarget "CheckList" */;
+			buildConfigurationList = D238FEF92657EE050071D81D /* Build configuration list for PBXNativeTarget "Task List" */;
 			buildPhases = (
 				D238FEDE2657EE030071D81D /* Sources */,
 				D238FEDF2657EE030071D81D /* Frameworks */,
@@ -137,9 +137,9 @@
 			);
 			dependencies = (
 			);
-			name = CheckList;
+			name = "Task List";
 			productName = CheckList;
-			productReference = D238FEE22657EE030071D81D /* CheckList.app */;
+			productReference = D238FEE22657EE030071D81D /* Task List.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D238FEDD2657EE030071D81D /* Build configuration list for PBXProject "CheckList" */;
+			buildConfigurationList = D238FEDD2657EE030071D81D /* Build configuration list for PBXProject "Task List" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,7 +169,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D238FEE12657EE030071D81D /* CheckList */,
+				D238FEE12657EE030071D81D /* Task List */,
 			);
 		};
 /* End PBXProject section */
@@ -354,7 +354,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.CheckList;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.tasklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,7 +374,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.CheckList;
+				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.tasklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -384,7 +384,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D238FEDD2657EE030071D81D /* Build configuration list for PBXProject "CheckList" */ = {
+		D238FEDD2657EE030071D81D /* Build configuration list for PBXProject "Task List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D238FEF72657EE050071D81D /* Debug */,
@@ -393,7 +393,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D238FEF92657EE050071D81D /* Build configuration list for PBXNativeTarget "CheckList" */ = {
+		D238FEF92657EE050071D81D /* Build configuration list for PBXNativeTarget "Task List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D238FEFA2657EE050071D81D /* Debug */,

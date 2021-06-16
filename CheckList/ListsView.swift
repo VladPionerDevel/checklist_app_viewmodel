@@ -10,6 +10,7 @@ import SwiftUI
 struct ListsView: View {
     
     @ObservedObject var viewModel: ViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     @State var nameList = ""
     @State var edditingList = false
@@ -57,6 +58,7 @@ struct ListsView: View {
     var buttonNavigationTrailing: some View {
         HStack{
             Button {
+                print("plus")
                 editableList = nil
                 isPresentedSettings = true
             } label: {
@@ -65,6 +67,7 @@ struct ListsView: View {
             .padding(.trailing, 10)
             
             Button(action: {
+                print("edite")
                 withAnimation {
                     self.edditingList.toggle()
                 }

@@ -46,26 +46,30 @@ struct MenuList: View {
                 
                 ScrollView {
                     ForEach(viewModel.lists){ list in
-                        HStack{
-                            Image(systemName: "list.dash")
-                                .foregroundColor(Color(UIColor.getColorDefaultColorLabel(withData: list.color)))
-                            Text(list.name ?? "")
-                            Spacer()
-                            Text(viewModel.getCountPerformedTasks(list: list))
-                                .foregroundColor(Color(UIColor.systemGray4))
-                            if list.isActive {
-                                Image(systemName: "checkmark")
+                        VStack(spacing: 0) {
+                            HStack{
+                                Image(systemName: "list.dash")
+                                    .foregroundColor(Color(UIColor.getColorDefaultColorLabel(withData: list.color)))
+                                Text(list.name ?? "")
+                                Spacer()
+                                Text(viewModel.getCountPerformedTasks(list: list))
+                                    .foregroundColor(Color(UIColor.systemGray4))
+                                if list.isActive {
+                                    Image(systemName: "checkmark")
+                                }
                             }
+                            .padding(.vertical, 10)
+                            .padding(.horizontal,15)
+                            .background(list.isActive ? Color(UIColor.systemGray5) : Color.clear)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                viewModel.setListActive(list: list)
+                                isShowToggle()
+                            }
+                            Divider()
+                                .padding(.horizontal,10)
                         }
-                        .background(list.isActive ? Color(UIColor.systemGray5) : Color.clear)
-                        .padding(.horizontal,15)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            viewModel.setListActive(list: list)
-                            isShowToggle()
-                        }
-                        Divider()
-                            .padding(.horizontal,10)
+                        
                     }
                     
                     
