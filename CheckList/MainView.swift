@@ -24,50 +24,62 @@ struct MainView: View {
     @State var isPresentedSettings = false
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){
-            NavigationView {
-                VStack {
-                    List {
-                        ForEach(viewModel.tasks) { task in
-                            CellTask(viewModel: viewModel, task: task, edditingList: $edditingList, showsAlert: $showsAlertEditTask, editableTask: $editableTask)
-                        }
-                        .onDelete(perform: viewModel.deleteTask)
-                        .onMove(perform: moveTask(from:to:))
-                        .onLongPressGesture {
-                            withAnimation {
-                                edditingList.toggle()
+        GeometryReader { bounds in
+            ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)){
+                NavigationView {
+                    VStack {
+                        List {
+                            ForEach(viewModel.tasks) { task in
+                                CellTask(viewModel: viewModel, task: task, edditingList: $edditingList, showsAlert: $showsAlertEditTask, editableTask: $editableTask)
+                            }
+                            .onDelete(perform: viewModel.deleteTask)
+                            .onMove(perform: moveTask(from:to:))
+                            .onLongPressGesture {
+                                withAnimation {
+                                    edditingList.toggle()
+                                }
                             }
                         }
-                    }
-                    .listStyle(PlainListStyle())
-                    .environment(\.editMode, edditingList ? .constant(EditMode.active) : .constant(EditMode.inactive))
-                    
-                    HStack {
-                        TextField("Neme Tsk", text: $nameTask)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button("New Task") {
-                            viewModel.addTask(name: nameTask)
-                            nameTask = ""
+                        .listStyle(PlainListStyle())
+                        .environment(\.editMode, edditingList ? .constant(EditMode.active) : .constant(EditMode.inactive))
+                        
+                        HStack {
+                            TextField("Neme Tsk", text: $nameTask)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            Button("New Task") {
+                                viewModel.addTask(name: nameTask)
+                                nameTask = ""
+                            }
                         }
+                        .padding()
+                        
+                        alertEditTask
                     }
-                    .padding()
-                    
-                    alertEditTask
-                }
-                .navigationBarTitle("\(viewModel.listActive?.name ?? "")", displayMode: .inline)
-                .navigationBarItems(leading: buttonLists, trailing: buttonSwitchListsEdditingMode )
-                .navigationBarColor(UIColor(UIColor.getColorDefaultColorBackground(withData: viewModel.listActive?.color)))
-                .disabled(isShowListLists)
-                .sheet(isPresented: $isPresentedSettings, content: {
-                    ListSettings(viewModel: viewModel, editableList: nil, isPresentedSettings: $isPresentedSettings, colorList: UIColor.getColorDefaultColorBackground(withData: nil))
-                })
-                .background(
-                    NavigationLink(destination: ListsView(viewModel: viewModel), isActive: $isNavigationToListsView) {
-                        EmptyView()
+                    .navigationBarTitle("\(viewModel.listActive?.name ?? "")", displayMode: .inline)
+                    .navigationBarItems(leading: buttonLists, trailing: buttonSwitchListsEdditingMode )
+                    .navigationBarColor(UIColor(UIColor.getColorDefaultColorBackground(withData: viewModel.listActive?.color)))
+                    .disabled(isShowListLists)
+                    .sheet(isPresented: $isPresentedSettings, content: {
+                        ListSettings(viewModel: viewModel, editableList: nil, isPresentedSettings: $isPresentedSettings, colorList: UIColor.getColorDefaultColorBackground(withData: nil))
                     })
+                    .background(
+                        NavigationLink(destination: ListsView(viewModel: viewModel), isActive: $isNavigationToListsView) {
+                            EmptyView()
+                        })
+                    
+                    .edgesIgnoringSafeArea(.trailing)
+                    .edgesIgnoringSafeArea(.leading)
+                    .edgesIgnoringSafeArea(.bottom)
+                }
+                .frame(maxWidth: .infinity,maxHeight: .infinity)
+                .navigationViewStyle(StackNavigationViewStyle())
+                
+                MenuList(viewModel: viewModel, isShow: $isShowListLists, isNavigationToListsView: $isNavigationToListsView, isPresentedSettings: $isPresentedSettings, bounds: bounds)
             }
-            MenuList(viewModel: viewModel, isShow: $isShowListLists, isNavigationToListsView: $isNavigationToListsView, isPresentedSettings: $isPresentedSettings)
         }
+        .edgesIgnoringSafeArea(.trailing)
+        .edgesIgnoringSafeArea(.leading)
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     @ViewBuilder

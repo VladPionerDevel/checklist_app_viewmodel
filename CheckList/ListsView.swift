@@ -51,6 +51,9 @@ struct ListsView: View {
             ListSettings(viewModel: viewModel, editableList: localEditableList, isPresentedSettings: $isPresentedSettings, colorList: UIColor.getColorDefaultColorBackground(withData: editableList?.color))
         })
         .navigationBarColor(UIColor(UIColor.getColorDefaultColorBackground(withData: viewModel.listActive?.color)))
+        .edgesIgnoringSafeArea(.leading)
+        .edgesIgnoringSafeArea(.trailing)
+        .edgesIgnoringSafeArea(.bottom)
         
     }
     

@@ -13,10 +13,11 @@ struct MenuList: View {
     @Binding var isShow: Bool
     @Binding var isNavigationToListsView: Bool
     @Binding var isPresentedSettings: Bool
+    @State var bounds: GeometryProxy
     
-    var width: CGFloat {
-        return UIScreen.main.bounds.maxX * 0.8
-    }
+//    var width: CGFloat {
+//        return UIScreen.main.bounds.maxX * 0.8
+//    }
     
     var body: some View {
         
@@ -76,9 +77,9 @@ struct MenuList: View {
                 }
                 .padding(.top, 10)
             }
-            .frame(minWidth: 0, maxWidth: width, minHeight: 0, maxHeight: .infinity)
+            .frame(minWidth: 0, maxWidth: bounds.size.width*0.8, minHeight: 0, maxHeight: .infinity)
             .background(Color(UIColor.systemBackground))
-            .offset(x: isShow ? 0 : -width, y: 0)
+            .offset(x: isShow ? 0 : -(bounds.size.width*0.8), y: 0)
             .animation(.easeInOut(duration: 0.5))
             .edgesIgnoringSafeArea(.bottom)
         }

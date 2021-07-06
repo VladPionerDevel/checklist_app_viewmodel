@@ -31,7 +31,7 @@ extension UIColor {
     }
 }
 
-// MARK: extension View, add addnavigationBarColor
+// MARK: extension View, add navigationBarColor
 
 struct NavigationBarModifier: ViewModifier {
         
