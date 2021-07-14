@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel = ViewModel.shared
     
     @State var nameList: String = ""
     @State var nameTask: String = ""

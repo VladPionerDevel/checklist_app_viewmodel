@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewModel: ObservableObject {
     
-    let handlerList = CoreDataList()
-    let handlerTask = CoreDataTask()
+    static let shared = ViewModel()
+    
+    let handlerList = CoreDataList.shared
+    let handlerTask = CoreDataTask.shared
     
     var listActive: TaskList? {
         willSet {
@@ -32,7 +35,7 @@ class ViewModel: ObservableObject {
     
     let nameFirstList = "List"
     
-    init() {
+    private init() {
         self.lists = handlerList.getAll()
         self.listActive = handlerList.getListActive()
         self.tasks = getTasks()
@@ -40,6 +43,18 @@ class ViewModel: ObservableObject {
         if self.lists.count == 0 {
             addListAndBecomeActive(name: nameFirstList)
         }
+    }
+    
+    func updateViewTasks() {
+        self.tasks = getTasks()
+    }
+    
+    func updateViewLists() {
+        self.lists = handlerList.getAll()
+    }
+    
+    func updateViewListActive() {
+        self.listActive = handlerList.getListActive()
     }
     
     func addList(name: String,color: UIColor? = nil,state: Bool? = nil) -> TaskList? {
@@ -103,7 +118,6 @@ class ViewModel: ObservableObject {
         self.lists = handlerList.getAll()
     }
     
-    
     func moveList (from source: IndexSet, to destination: Int) {
         handlerList.moveList(from: source, to: destination)
         self.lists = handlerList.getAll()
@@ -156,9 +170,26 @@ class ViewModel: ObservableObject {
         return "\(performed.count)/\(tasks.count)"
     }
     
+    func renumeratePositionTask(context: NSManagedObjectContext? = nil) {
+        guard let listActive = self.listActive else {return}
+        handlerTask.renumeratePositionTask(list: listActive,context: context)
+        self.updateViewTasks()
+    }
+    
+    func renumeratePositionList(context: NSManagedObjectContext? = nil){
+        handlerList.renumeratePositionList(context: context)
+        self.updateViewLists()
+    }
+    
+    func checkListActiveMoreOne(context: NSManagedObjectContext? = nil) {
+        handlerList.checkListActiveMoreOne(context: context)
+    }
+    
     private func getTasks() -> [Task] {
         guard let listActive = self.listActive else {return []}
         
         return handlerTask.getAllFromList(listActive: listActive)
     }
+    
+    
 }

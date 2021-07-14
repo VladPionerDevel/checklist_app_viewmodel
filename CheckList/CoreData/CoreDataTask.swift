@@ -9,6 +9,11 @@ import Foundation
 import CoreData
 
 class CoreDataTask {
+    
+    static let shared = CoreDataTask()
+    
+    private init() {}
+    
     let context = CoreDataStack.shared.persistentContainer.viewContext
     
     func getAllFromList(listActive: TaskList) -> [Task] {
@@ -46,13 +51,13 @@ class CoreDataTask {
     
     func moveTask(from source: IndexSet, to destination: Int, list: TaskList){
         let tasks = getAllFromList(listActive: list)
-        
+
         var sourceInt: Int = 0
         let _ = source.map {
             let t = tasks[$0]
             sourceInt = tasks.firstIndex {$0 === t}!
         }
-        
+
         if sourceInt < destination {
             let dest1 = destination - 1
             tasks[sourceInt].position = tasks[dest1].position
@@ -69,9 +74,53 @@ class CoreDataTask {
                 }
             }
         }
-        
+
         saveContext()
     }
+    
+    func renumeratePositionTask(list: TaskList, context: NSManagedObjectContext? = nil){
+        let tasks = getAllFromList(listActive: list)
+        tasks.enumerated().forEach { index, item in
+            if item.position != Int64(index) {
+                item.position = Int64(index)
+            }
+        }
+        
+        saveContext(context: context)
+    }
+    
+//    func moveTask(from source: IndexSet, to destination: Int, list: TaskList){
+//        let tasks = getAllFromList(listActive: list)
+//
+//        let source = source.first!
+//
+//        if source < destination {
+//            var startIndex = source + 1
+//            let endIndex = destination - 1
+//            var startOrder = tasks[source].position
+//            while startIndex <= endIndex {
+//                tasks[startIndex].position = startOrder
+//                startOrder = startOrder + 1
+//                startIndex = startIndex + 1
+//            }
+//
+//            tasks[source].position = startOrder
+//
+//        } else if destination < source {
+//            var startIndex = destination
+//            let endIndex = source - 1
+//            var startOrder = tasks[destination].position + 1
+//            let newOrder = tasks[destination].position
+//            while startIndex <= endIndex {
+//                tasks[startIndex].position = startOrder
+//                startOrder = startOrder + 1
+//                startIndex = startIndex + 1
+//            }
+//            tasks[source].position = newOrder
+//        }
+//
+//        saveContext()
+//    }
     
     func toggleTaskCheck(task: Task) {
         task.isCheck.toggle()
@@ -84,7 +133,7 @@ class CoreDataTask {
         saveContext()
     }
     
-    func  saveContext()  {
-        CoreDataStack.shared.saveContext()
+    func  saveContext(context: NSManagedObjectContext? = nil)  {
+        CoreDataStack.shared.saveContext(context: context)
     }
 }

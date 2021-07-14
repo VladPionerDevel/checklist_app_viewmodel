@@ -11,6 +11,10 @@ import UIKit
 
 class CoreDataList {
     
+    static let shared = CoreDataList()
+    
+    private init() {}
+    
     let context = CoreDataStack.shared.persistentContainer.viewContext
     
     func getAll() -> [TaskList] {
@@ -114,7 +118,6 @@ class CoreDataList {
         saveContext()
     }
     
-    
     func editList(list: TaskList, name: String, color: UIColor? = nil){
         guard name != "" else { return }
         list.name = name
@@ -124,8 +127,39 @@ class CoreDataList {
         saveContext()
     }
     
-    func  saveContext()  {
-        CoreDataStack.shared.saveContext()
+    func renumeratePositionList(context: NSManagedObjectContext? = nil){
+        let lists = getAll()
+        lists.enumerated().forEach { index, item in
+            if item.position != Int64(index) {
+                item.position = Int64(index)
+            }
+        }
+        
+        saveContext(context: context)
     }
+    
+    func checkListActiveMoreOne(context: NSManagedObjectContext? = nil){
+        let lists = getAll()
+        var active = false
+        lists.forEach { (list) in
+            if !active {
+                if list.isActive {
+                    active = true
+                }
+            } else {
+                if list.isActive {
+                    list.isActive = false
+                }
+            }
+        }
+        
+        saveContext(context: context)
+    }
+    
+    func  saveContext(context: NSManagedObjectContext? = nil)  {
+        CoreDataStack.shared.saveContext(context: context)
+    }
+    
+    
     
 }

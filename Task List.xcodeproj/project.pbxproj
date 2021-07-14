@@ -18,6 +18,7 @@
 		D23966ED2670AE9800378A91 /* MenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23966EC2670AE9800378A91 /* MenuList.swift */; };
 		D23966F52678B12B00378A91 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23966F42678B12B00378A91 /* Extensions.swift */; };
 		D23966F82678BE5A00378A91 /* MenuListToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23966F72678BE5A00378A91 /* MenuListToolBar.swift */; };
+		D29436A6269DCCBD00A2DDAD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29436A5269DCCBD00A2DDAD /* CloudKit.framework */; };
 		D2C01618265BCE0B00D6E0DB /* CoreDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C01617265BCE0B00D6E0DB /* CoreDataList.swift */; };
 		D2C0161B265BD48E00D6E0DB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0161A265BD48E00D6E0DB /* ViewModel.swift */; };
 		D2C0161F265D010200D6E0DB /* CoreDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C0161E265D010200D6E0DB /* CoreDataTask.swift */; };
@@ -42,6 +43,8 @@
 		D23966EC2670AE9800378A91 /* MenuList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuList.swift; sourceTree = "<group>"; };
 		D23966F42678B12B00378A91 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D23966F72678BE5A00378A91 /* MenuListToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListToolBar.swift; sourceTree = "<group>"; };
+		D29436A2269DCCB700A2DDAD /* Task List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Task List.entitlements"; sourceTree = "<group>"; };
+		D29436A5269DCCBD00A2DDAD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		D2C01617265BCE0B00D6E0DB /* CoreDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataList.swift; sourceTree = "<group>"; };
 		D2C0161A265BD48E00D6E0DB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D2C0161E265D010200D6E0DB /* CoreDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTask.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29436A6269DCCBD00A2DDAD /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,8 +70,10 @@
 		D238FED92657EE030071D81D = {
 			isa = PBXGroup;
 			children = (
+				D29436A2269DCCB700A2DDAD /* Task List.entitlements */,
 				D238FEE42657EE030071D81D /* CheckList */,
 				D238FEE32657EE030071D81D /* Products */,
+				D29436A4269DCCBD00A2DDAD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +126,14 @@
 				D2C0161E265D010200D6E0DB /* CoreDataTask.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		D29436A4269DCCBD00A2DDAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D29436A5269DCCBD00A2DDAD /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,8 +360,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Task List.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CheckList/Preview Content\"";
 				DEVELOPMENT_TEAM = 86WFLL6RH3;
 				ENABLE_PREVIEWS = YES;
@@ -356,6 +371,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.tasklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -368,8 +384,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Task List.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CheckList/Preview Content\"";
 				DEVELOPMENT_TEAM = 86WFLL6RH3;
 				ENABLE_PREVIEWS = YES;
@@ -378,6 +395,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ua.vladpioner.tasklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
